@@ -20,3 +20,17 @@ Route::get('/second', 'BlogController@index');
 Route::get('/blog/{angka}', 'BlogController@show');
 Route::get('/crud/{angka}', 'BlogController@showCrud');
 Route::get('/second/{id}', 'BlogController@second');
+
+//Middleware
+Route::get('/film', function(){
+    return 'Anda sudah dewasa';
+})->middleware('cek-umur');
+Route::get('/cek', function()
+{
+    return view('middleware.check');
+});
+Route::get('/users', 'UserController@index')->name('users.index');
+Route::get('/cek-status', 'UserController@cek')->name('users.cek');
+Route::get('/form','AuthController@form')->name('auth.form');
+Route::post('/login', 'AuthController@login')->name('auth.login');
+Route::post('/logout', 'AuthController@logout')->name('auth.logout');
